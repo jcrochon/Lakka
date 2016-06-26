@@ -89,7 +89,11 @@
     UVESAFB_SUPPORT="yes"
 
   # Displayserver to use (x11 / no)
-    DISPLAYSERVER="no"
+    if [ "$X11SERVER" == "yes" ]; then
+      DISPLAYSERVER="x11"
+    else
+      DISPLAYSERVER="no"
+    fi
 
   # KODI Player implementation to use (default / bcm2835-driver / libfslvpuwrap)
     KODIPLAYER_DRIVER="default"
