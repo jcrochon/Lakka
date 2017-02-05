@@ -1,0 +1,11 @@
+--- a/src/uxa/intel_driver.c	2017-02-05 15:13:12.952809637 +0100
++++ b/src/uxa/intel_driver.c	2017-02-05 15:13:33.840809961 +0100
+@@ -44,6 +44,8 @@
+ #include <stdlib.h>
+ #include <stdio.h>
+ #include <errno.h>
++#include <sys/stat.h>
++#include <sys/types.h>
+ 
+ #include "xorg-server.h"
+ #include "xf86.h"
