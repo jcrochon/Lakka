@@ -158,11 +158,16 @@
 # Space separated list is supported,
 # e.g. GRAPHIC_DRIVERS="i915 i965 r300 r600 radeonsi nvidia nouveau"
   if [ "$TARGET_ARCH" = "i386" ]; then
-    # TODO: create Legacy build with OpenELEC-4.2
-    # install legacy drivers to i386 ARCH
-    GRAPHIC_DRIVERS="r200 r300 r600 i915 i965 nvidia"
+    GRAPHIC_DRIVERS="r200 r300 r600 i915 i965"
   elif [ "$TARGET_ARCH" = "x86_64" ]; then
-    GRAPHIC_DRIVERS="r300 r600 radeonsi i915 i965 nvidia"
+    GRAPHIC_DRIVERS="r300 r600 i915 i965"
+  fi
+
+# Use nvidia-binary drivers when using X11, otherwise use nouveau
+  if [ "$X11SERVER" == "yes" ]; then
+    GRAPHIC_DRIVERS="$GRAPHIC_DRIVERS nvidia nvidia-legacy"
+  else
+    GRAPHIC_DRIVERS="$GRAPHIC_DRIVERS nouveau"
   fi
 
 # build and install remote support (yes / no)
