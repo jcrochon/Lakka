@@ -48,8 +48,10 @@ if [ "$AVAHI_DAEMON" = yes ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET avahi nss-mdns"
 fi
 
-if [ "$OPENGLES" == "no" ]; then
-  RETROARCH_GL="--enable-kms"
+if [ "$DISPLAYSERVER" == "x11" ]; then
+  RETROARCH_GL="--enable-x11 --disable-kms"
+elif [ "$OPENGLES" == "no" ]; then
+  RETROARCH_GL="--enable-kms --disable-x11"
 elif [ "$OPENGLES" == "bcm2835-driver" ]; then
   RETROARCH_GL="--enable-opengles --disable-kms --disable-x11"
   CFLAGS="$CFLAGS -I$SYSROOT_PREFIX/usr/include/interface/vcos/pthreads \
